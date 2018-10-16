@@ -6,4 +6,14 @@
 
 > 你需要明白的一点是只有中本聪的c++版本的比特币系统才是真正的比特币系统,其余任何语言的版本都是在模拟实现比特币系统,目的是使用自己擅长的语言去理解比特币的机制和原理。
 
-我们需要学习比特币系统的机制和原理选择使用的是Golang技术,模拟实现比特币机制的过程又被称为"公链开发"。最为权威的参考教程都来自一个外国开发者Ivan Kuznetsov所编写的7篇文章([Ivan Kuznetsov的Blog](https://jeiwan.cc/))
+我们需要学习比特币系统的机制和原理选择使用的是Golang技术,模拟实现比特币机制的过程又被称为"公链开发"。最为权威的参考教程都来自一个外国开发者Ivan Kuznetsov所编写的7篇文章。
+
+[Ivan Kuznetsov的Blog](https://jeiwan.cc/)中的7篇文章如下所示:
+
+*Building Blockchain in Go. Part 1: Basic Prototype [区块链的基础原型]
+*Building Blockchain in Go. Part 2: Proof-of-Work [工作量证明]
+*Building Blockchain in Go. Part 3: Persistence and CLI [持久化存储和客户端命令行]]
+*Building Blockchain in Go. Part 4: Transactions1 [交易1-实现UTXO交易的机制]
+*Building Blockchain in Go. Part 5: Addresses [比特币地址和数字签名]
+*Building Blockchain in Go. Part 6: Transactions2 [交易2-优化UTXO交易]
+*Building Blockchain in Go. Part 7: NetWork  [模拟比特币网络]
