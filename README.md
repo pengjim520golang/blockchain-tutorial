@@ -10,10 +10,10 @@
 
 [Ivan Kuznetsov的Blog](https://jeiwan.cc/)中的7篇文章如下所示:
 
-*Building Blockchain in Go. Part 1: Basic Prototype [区块链的基础原型]
-*Building Blockchain in Go. Part 2: Proof-of-Work [工作量证明]
-*Building Blockchain in Go. Part 3: Persistence and CLI [持久化存储和客户端命令行]]
-*Building Blockchain in Go. Part 4: Transactions1 [交易1-实现UTXO交易的机制]
-*Building Blockchain in Go. Part 5: Addresses [比特币地址和数字签名]
-*Building Blockchain in Go. Part 6: Transactions2 [交易2-优化UTXO交易]
-*Building Blockchain in Go. Part 7: NetWork  [模拟比特币网络]
+* Building Blockchain in Go. Part 1: Basic Prototype [区块链的基础原型]
+* Building Blockchain in Go. Part 2: Proof-of-Work [工作量证明]
+* Building Blockchain in Go. Part 3: Persistence and CLI [持久化存储和客户端命令行]]
+* Building Blockchain in Go. Part 4: Transactions1 [交易1-实现UTXO交易的机制]
+* Building Blockchain in Go. Part 5: Addresses [比特币地址和数字签名]
+* Building Blockchain in Go. Part 6: Transactions2 [交易2-优化UTXO交易]
+* Building Blockchain in Go. Part 7: NetWork  [模拟比特币网络]
