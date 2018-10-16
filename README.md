@@ -18,4 +18,4 @@
 * Building Blockchain in Go. Part 6: Transactions2 [交易2-优化UTXO交易]
 * Building Blockchain in Go. Part 7: NetWork  [模拟比特币网络]
 
-**以上资料已经由国内翻译了过来如果你希望查看中文翻译版你可以**[点击这里](https://github.com/pengjim520golang/blockchain-tutorial/tree/master/%E6%AF%94%E7%89%B9%E5%B8%81%E6%9D%83%E5%A8%81%E6%95%99%E6%9D%90/Golang%E5%AE%9E%E7%8E%B0%E6%AF%94%E7%89%B9%E5%B8%81/)
+**以上资料如果你希望查看中文翻译版你可以**[点击这里](https://github.com/pengjim520golang/blockchain-tutorial/tree/master/%E6%AF%94%E7%89%B9%E5%B8%81%E6%9D%83%E5%A8%81%E6%95%99%E6%9D%90/Golang%E5%AE%9E%E7%8E%B0%E6%AF%94%E7%89%B9%E5%B8%81/)
