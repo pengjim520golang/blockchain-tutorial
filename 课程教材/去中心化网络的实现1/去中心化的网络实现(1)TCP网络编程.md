@@ -84,3 +84,29 @@ func handlerConnection( conn net.Conn ){
 ```
 
 这里最重要的是理解参数`conn`是保存了服务器端和客户端通信链接,这个链接如果不存在无法实现两者之间的通信。对于服务器端的解释就这么多[点击这里](https://github.com/pengjim520golang/blockchain-tutorial/blob/master/%E8%AF%BE%E7%A8%8B%E6%95%99%E6%9D%90/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%BD%91%E7%BB%9C%E7%9A%84%E5%AE%9E%E7%8E%B01/src/tcpServer/server.go)查看服务器端代码完整实现
+
+# TCP客户端的实现
+
+完成了服务器端的创建,客户端的实现相对简单,同样需要导入`net`包,使用`net.Dial`链接服务器端。
+
+```go
+package main 
+import (
+	"fmt"
+	"net"
+)
+func main(){
+	//链接服务器端
+	conn,err := net.Dial("tcp","localhost:3000")
+	if err != nil {
+		fmt.Println("无法链接服务器")
+		return 
+	}
+	//向服务器发送一条信息
+	conn.Write([]byte("Hello BlockChainer.."))
+}
+```
+
+`net.Dial(network,port string)` 参数`network`传入`tcp`与服务器端一致,参数`port`传入`localhost:3000`表示链接本地服务器监听的3000端口,`conn`是客户端和服务器端产生的通信链接通道,可以通过`conn.Write`向服务器端发送一条消息
+
+> 注意：网络传输数据一般使用字节传送
