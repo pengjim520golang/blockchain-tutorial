@@ -56,3 +56,31 @@ func main(){
 以上代码也许你会产生一个疑问,为什么`listener.Accept()`发生错误后程序继续往后执行?
 因为服务器一旦创建成功户端可以接受多个客的链接,试想10个客户端链接服务器只有1个失败,我们是不可能终止程序的使得另外9个客户端退出的,所以这里发生错误只是某一个客户端的错误。
 
+完成了上述的工作就需要考虑如何处理与客户端的通信了,答案是一个协程处理一个客户端通信链接。
+
+```go
+//处理当前通信链接
+go handlerConnection( conn )
+```
+
+为什么要使用goroutine来实现协程处理客户端通信链接,目的是为了解决多客户端并发问题。1个协程服务1个客户端,多个客户端就无需等待`handlerConnection`函数完成执行。现在还需要看看`handlerConnection`的逻辑。
+
+```go
+func handlerConnection( conn net.Conn ){
+	defer conn.Close()
+	//不断等待客户端的发送
+	for {
+		//读取客户端发送过来数据的容器,表示最多读取1024字节
+		buf := make([]byte,1024)
+		n,err := conn.Read( buf )
+		if err != nil {
+			fmt.Println("客户端退出...")
+			return 
+		}
+		message := string(buf[:n])
+		fmt.Printf("%s:%s\n",conn.RemoteAddr().String(), message)
+	}
+}
+```
+
+这里最重要的是理解参数`conn`是保存了服务器端和客户端通信链接,这个链接如果不存在无法实现两者之间的通信。对于服务器端的解释就这么多[点击这里](https://github.com/pengjim520golang/blockchain-tutorial/blob/master/%E8%AF%BE%E7%A8%8B%E6%95%99%E6%9D%90/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%BD%91%E7%BB%9C%E7%9A%84%E5%AE%9E%E7%8E%B01/src/tcpServer/server.go)查看服务器端代码完整实现
