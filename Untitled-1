@@ -1,0 +1,80 @@
+pragma solidity ^0.4.22;
+//定义投票类 
+contract Ballot {
+    //投票人结构体
+    struct Voter {
+        //权重
+        uint weight;
+        //该投票人是否投票，true表示已投票，false表示未投票
+        bool voted;
+        //给谁(提案索引号)投票  
+        uint8 vote;
+        //委托的投票代表
+        address delegate;
+    }
+    //提案结构体
+    struct Proposal {
+        //提案累计票数
+        uint voteCount;
+    }
+    //投票的主席
+    address chairperson;
+    /声明一个状态变量voters，保存每个独立地址的Voter结构体
+    mapping(address => Voter) voters;
+    //声明一个存储Proposal结构的动态数组
+    Proposal[] proposals;
+
+    //用_numProposals个不同提案创建一个新的投票
+    constructor(uint8 _numProposals) public {
+        //合约发送者就是主席
+        chairperson = msg.sender;
+        //在voters中，主席的权重为1
+        voters[chairperson].weight = 1;
+        //投票提案的个数
+        proposals.length = _numProposals;
+    }
+    //主席授予给每个投票人投票权利,并且只能够由主席调用
+    function giveRightToVote(address toVoter) public {
+        //当前调用者不是主席或者当前投票人已经投过票，那么就不能继续
+        require(msg.sender != chairperson || voters[toVoter].voted);
+        //授权给当前投票者投票的权限
+        voters[toVoter].weight = 1;
+    }
+
+    //将自己(该函数的调用者)的投票权委托给委托人to
+    function delegate(address to) public {
+        Voter storage sender = voters[msg.sender]; // assigns reference
+        if (sender.voted) return;
+
+        while (voters[to].delegate != address(0) && voters[to].delegate != msg.sender)
+            to = voters[to].delegate;
+
+            
+        if (to == msg.sender) return;
+        sender.voted = true;
+        sender.delegate = to;
+        Voter storage delegateTo = voters[to];
+        if (delegateTo.voted)
+            proposals[delegateTo.vote].voteCount += sender.weight;
+        else
+            delegateTo.weight += sender.weight;
+    }
+
+    /// Give a single vote to proposal $(toProposal).
+    function vote(uint8 toProposal) public {
+        Voter storage sender = voters[msg.sender];
+        if (sender.voted || toProposal >= proposals.length) return;
+        sender.voted = true;
+        sender.vote = toProposal;
+        proposals[toProposal].voteCount += sender.weight;
+    }
+
+    function winningProposal() public constant returns (uint8 _winningProposal) {
+        uint256 winningVoteCount = 0;
+        for (uint8 prop = 0; prop < proposals.length; prop++)
+            if (proposals[prop].voteCount > winningVoteCount) {
+                winningVoteCount = proposals[prop].voteCount;
+                _winningProposal = prop;
+            }
+    }
+}
