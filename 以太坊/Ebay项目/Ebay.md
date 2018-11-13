@@ -69,7 +69,7 @@ contract EcommerceStore{
                                 uint _auctionEndTime, 
                                 uint _startPrice, 
                                 uint _productCondition) public {
-        //如果开始时间小于结束时间则无法添加产品???
+        //如果开始时间必须小于结束时间
         require (_auctionStartTime < _auctionEndTime);
         //产品id自动增长
         productIndex += 1;
