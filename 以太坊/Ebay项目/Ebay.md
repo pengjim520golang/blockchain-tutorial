@@ -3,7 +3,7 @@
 ```java
 pragma solidity ^0.4.17;
 //商店合约
-constract EcommerceStore{
+contract EcommerceStore{
     /**
     产品拍卖状态
     Open : 开始拍卖
