@@ -1,6 +1,6 @@
 # 商店合约编写
 
-```javascript
+```java
 pragma solidity ^0.4.17;
 //商店合约
 constract EcommerceStore{
