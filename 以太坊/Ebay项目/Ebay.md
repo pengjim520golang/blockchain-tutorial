@@ -93,5 +93,31 @@ contract EcommerceStore{
         //通过产品索引找到发送者是谁
         productIdInStore[productIndex] = msg.sender;
     }
+
+    //根据产品索引获取产品
+    function getProduct(uint _productId) view public returns (uint,
+                                                              string, 
+                                                              string, 
+                                                              string, 
+                                                              string, 
+                                                              uint, 
+                                                              uint, 
+                                                              uint, 
+                                                              ProductStatus, 
+                                                              ProductCondition) {
+    //得到Product的结构体对象           
+    Product memory product = stores[productIdInStore[_productId]][_productId];
+    return (product.id, 
+            product.name, 
+            product.category, 
+            product.imageLink, 
+            product.descLink, 
+            product.auctionStartTime,
+            product.auctionEndTime, 
+            product.startPrice, 
+            product.status, 
+            product.condition);
+    }
+
 }
 ```
