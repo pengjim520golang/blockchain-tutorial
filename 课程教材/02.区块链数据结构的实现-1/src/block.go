@@ -17,11 +17,7 @@ type Block struct {
 
 //创建一个区块实例
 func NewBlock(transactions []*Transaction,prevBlockHash []byte) *Block{
-	block := &Block{time.Now().Unix(),
-					transactions,
-					prevBlockHash,
-					[]byte{},
-					0}
+	block := &Block{time.Now().Unix(),transactions,prevBlockHash,[]byte{},0}
 	//创建区块地址
 	block.setHash()
 	return block
@@ -42,11 +38,7 @@ func (block *Block) HashTransactions() []byte{
 //设置Block的Hash(这个工作我们应该在工作量(挖矿)中实现,本小节是简单实现)
 func (block *Block) setHash(){
 	//组合用于哈希的区块数据
-	hashData := bytes.Join([][]byte{ IntToHex(block.Timestamp),
-									 IntToHex(int64(block.Nonce)),
-									 block.HashTransactions(),
-									 block.PrevBlockHash},[]byte{})
-
+	hashData := bytes.Join([][]byte{ IntToHex(block.Timestamp),IntToHex(int64(block.Nonce)),block.HashTransactions(),block.PrevBlockHash},[]byte{})
 	var hash [32]byte 
 	hash = sha256.Sum256(hashData)
 	//设置当前区块的哈希地址
