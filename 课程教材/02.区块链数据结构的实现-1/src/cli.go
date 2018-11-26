@@ -27,6 +27,8 @@ func (cli *CLI) Run(){
 	createWalletCmd := flag.NewFlagSet("createwallet", flag.ExitOnError)
 	//注册listaddresses命令
 	listAddressesCmd := flag.NewFlagSet("listaddresses", flag.ExitOnError)
+	//注册printblockchain命令
+	printblockchainCmd := flag.NewFlagSet("printblockchain", flag.ExitOnError)
 	switch os.Args[1] {
 	case "createwallet":
 		err := createWalletCmd.Parse(os.Args[2:])
@@ -38,6 +40,11 @@ func (cli *CLI) Run(){
 		if err != nil {
 			log.Panic(err)
 		}
+	case "printblockchain":
+		err := printblockchainCmd.Parse(os.Args[2:])
+		if err != nil {
+			log.Panic(err)
+		}
 	}
 	//如果用户输入的是createwallet就执行对应方法
 	if createWalletCmd.Parsed() {
@@ -46,5 +53,9 @@ func (cli *CLI) Run(){
 	//如果用户输入的是listaddresses就执行对应方法
 	if listAddressesCmd.Parsed() {
 		cli.listAddresses()
+	}
+	//如果用户输入的是printblockchain就执行对应方法
+	if printblockchainCmd.Parsed() {
+		cli.printBlockChain()
 	}
 }
