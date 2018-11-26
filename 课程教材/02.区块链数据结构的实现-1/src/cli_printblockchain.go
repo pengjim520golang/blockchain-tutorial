@@ -15,28 +15,16 @@ func (cli *CLI) printBlockChain() {
 	bc := NewBlockchain(block)
 
 	//创建交易1
-	txIn = TXInput{[]byte("11111111111"),
-				   0,
-				   []byte("1EEdwyuhhNXyYCheqibbTDnZygZD4ypiop"),
-				   []byte("pubkey")}
-	txOut = TXOutput{20,
-		            []byte("1NBP1H3VMzPKNx6Lknk2pL7dFJTUQswC5n")}
-	txOne := &Transaction{[]byte("22222222"), 
-						  []TXInput{txIn},
-						  []TXOutput{txOut}}
+	txIn = TXInput{[]byte("11111111111"),0,[]byte("1EEdwyuhhNXyYCheqibbTDnZygZD4ypiop"),[]byte("pubkey")}
+	txOut = TXOutput{20,[]byte("1NBP1H3VMzPKNx6Lknk2pL7dFJTUQswC5n")}
+	txOne := &Transaction{[]byte("22222222"), []TXInput{txIn},[]TXOutput{txOut}}
 	//将交易信息加入区块链
 	bc.AddBlock([]*Transaction{txOne})
 	
 	//创建交易2
-	txIn = TXInput{[]byte("11111111111"),
-					0,
-					[]byte("1EEdwyuhhNXyYCheqibbTDnZygZD4ypiop"),
-					[]byte("pubkey")}
-	txOut = TXOutput{10,
-		             []byte("1NBP1H3VMzPKNx6Lknk2pL7dFJTUQswC5n")}
-	txSec := &Transaction{[]byte("22222222"),
-						  []TXInput{txIn},
-						  []TXOutput{txOut}}
+	txIn = TXInput{[]byte("11111111111"),0,[]byte("1EEdwyuhhNXyYCheqibbTDnZygZD4ypiop"),[]byte("pubkey")}
+	txOut = TXOutput{10,[]byte("1NBP1H3VMzPKNx6Lknk2pL7dFJTUQswC5n")}
+	txSec := &Transaction{[]byte("22222222"),[]TXInput{txIn},[]TXOutput{txOut}}
 	//将交易信息加入区块链
 	bc.AddBlock([]*Transaction{txSec})
 
