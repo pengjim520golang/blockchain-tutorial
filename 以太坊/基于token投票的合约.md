@@ -110,6 +110,13 @@ contract VotingByToken{
         return uint(-1);
     }
     
+    function tokensSold() view public returns (uint) {  
+		return totalTokens - balanceTokens;
+	}
     
+    function voterDetails(address user) view public returns (uint, uint[]) {  
+		return (voterInfo[user].tokenBought,voterInfo[user].tokenUsedCandidate);
+	}
 }
+
 ```
